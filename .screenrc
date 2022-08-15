@@ -1,0 +1,12 @@
+termcapinfo xterm* ti@:te@
+defscrollback 100000
+altscreen on
+escape ^Ll
+defutf8 on
+defencoding utf8
+encoding utf8 utf8
+startup_message off
+vbell off
+hardstatus alwayslastline "%{= cd} %-w%{= wk} %n %t* %{-}%+w %= LoadAVG [%l] "
+defbce on
+term xterm-256color
