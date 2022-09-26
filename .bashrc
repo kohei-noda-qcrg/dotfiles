@@ -1,3 +1,81 @@
+# .bashrc
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+ulimit -s unlimited
+
+SCRIPTDIR=/home/.common
+
+##################################
+#
+# for Compiler
+#
+
+COMPILER=INTEL19.0
+#COMPILER=INTEL18.0
+#COMPILER=INTEL17.0
+#COMPILER=INTEL15.0
+# COMPILER=PGI17
+#COMPILER=PGI16
+#COMPILER=PGI15
+
+##################################
+#
+# for MPI
+#
+
+MPI=IntelMPI
+#MPI=OpenMPI
+#MPI=MPICH
+#MPI=MPICH2
+
+for script in $SCRIPTDIR/$COMPILER/*.sh $SCRIPTDIR/$COMPILER/$MPI/*.sh $SCRIPTDIR/*.sh
+do
+	if [ -r $script ]; then
+		. $script
+	fi
+done
+
+
+#########################
+# OpenMP, MKL parallel
+#########################
+NUMTHREADS=1
+export OMP_NUM_THREADS=$NUMTHREADS
+export MKL_NUM_THREADS=$NUMTHREADS
+
+#########################
+# pyenv
+#########################
+#<< "#COMMENT"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+export PATH=$HOME/.local/bin:$PATH
+eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
+#COMMENT
+
+#########################
+# PETSC, Slepc
+########################
+
+export PETSC_ARCH=arch-linux-c-debug
+export PETSC_DIR=$HOME/Software/petsc
+export SLEPC_DIR=$HOME/Software/slepc/slepc-3.16.1
+
+########################
+# path
+########################
+export PATH=$HOME/batch/analyze:$PATH
+
 #########################
 # History
 #########################
@@ -9,12 +87,21 @@ HISTIGNORE='?:??:???:exit' # Ignore 1~3 character only commands and the exit com
 #########################
 
 export LS_COLORS=$LS_COLORS:'di=0;36' # Change ls color to cyan
+#########################
+# Module load
+#########################
 
+#<< "#COMMENT"
+module use --append "$HOME/modulefiles" # Add my modules
+module purge 		# deactivate all modules
+module load cmake 	# Load default cmake
+module load git 	# Load git
+#COMMENT
 
 #########################
 # Git settings
 #########################
-source "$HOME/.config/git/git-completion.bash" # bash/zsh completion support for core Git
+source "$HOME/.config/git/.git-completion.bash" # bash/zsh completion support for core Git
 source "$HOME/.config/git/git-prompt.sh" # Allows you to see repository status in your prompt
 export GIT_PS1_SHOWDIRTYSTATE=1 # if you set GIT_PS1_SHOWDIRTYSTATE to a nonempty value, unstaged (*) and staged (+) changes will be shown next to the branch name.
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] ' # Change your PS1 to call __git_ps1 as command-substitution: Bash: PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
@@ -23,9 +110,26 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\
 #########################
 # Aliases
 #########################
+
+# bjobs
 alias alljob="bjobs -u all"
 alias histalljobs="bjobs -u all -a"
 alias bjobsworkdir="bjobs -l | awk '/Submitted/{printf \$10;getline;print \$1}' | sed 's/^<//' | sed 's/>.*//'"
+alias alljobsworkdir="bjobs -u all -l | awk '/Submitted/{printf \$10;getline;print \$1}' | sed 's/^<//' | sed 's/>.*//'"
+alias checkjobs="while true; do bjobs; sleep 3; done"
+
+# caspt2
+alias dcaspt2_grep="grep ^@ ${MOL}_${MOL}.out && cat ${MOL}.caspt2.out  | awk '\$1 ~ /e2.$/{print}/Total/{print}/CASCI ENERGY/{getline;print \"CASCI energy is \" \$2 \" a.u.\"}'"
+alias dcaspt2_grep_mp2="grep ^@ ${MOL}_${MOL}.out | grep MP2 | cat && cat ${MOL}.caspt2.out  | awk '\$1 ~ /e2.$/{print}/Total/{print}/CASCI ENERGY/{getline;print \"CASCI energy is \" \$2 \" a.u.\"}'"
+alias caspt2_grep="cat ${MOL}.caspt2.out  | awk '\$1 ~ /e2.$/{print}/Total/{print}/CASCI ENERGY/{getline;print \"CASCI energy is \" \$2 \" a.u.\"}'"
+
+# git
+alias ga="git add"
+alias gb="git branch"
+alias gba="git branch -a"
+alias gc="git commit"
+alias gl="git log"
+alias gst="git status"
 
 #########################
 # fzf
@@ -37,3 +141,11 @@ export FZF_DEFAULT_OPTS='--height 80%'
 # z
 #########################
 . ~/z/z.sh
+
+#########################
+# Debug options
+#########################
+
+# IDEBUG is debug options for Intel Fortran. GDEBUG is for GNU Fortran.
+export IDEBUG="-check -traceback -debug extended -debug-parameters -warn"
+export GDEBUG="-Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1 -g -fcheck=all -fbacktrace"
