@@ -80,7 +80,7 @@ export PATH=$HOME/batch/analyze:$PATH
 # History
 #########################
 HISTCONTROL=ignoreboth # Ignore duplicated commands
-HISTIGNORE='?:??:???:exit' # Ignore 1~3 character only commands and the exit command
+HISTIGNORE='exit' # Ignore exit command
 
 #########################
 # Color Settings
