@@ -1,5 +1,5 @@
 termcapinfo xterm* ti@:te@
-defscrollback 100000
+defscrollback 1000000
 altscreen on
 escape ^Ll
 defutf8 on
