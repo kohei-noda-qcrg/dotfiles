@@ -116,7 +116,23 @@ alias alljob="bjobs -u all"
 alias histalljobs="bjobs -u all -a"
 alias bjobsworkdir="bjobs -l | awk '/Submitted/{printf \$10;getline;print \$1}' | sed 's/^<//' | sed 's/>.*//'"
 alias alljobsworkdir="bjobs -u all -l | awk '/Submitted/{printf \$10;getline;print \$1}' | sed 's/^<//' | sed 's/>.*//'"
-alias checkjobs="while true; do bjobs; sleep 3; done"
+function checkjobs() {
+	default_sec=10
+	if [ -z $1 ]; then
+		sec=$default_sec
+	else
+		case $1 in
+			''|*[!0-9]*) echo -e "** WARNING **\nThe variable you specified is not a natural number.\nUse the default setting...\n"; sec=$default_sec  ;;
+			*) sec=$1 ;;
+		esac
+	fi
+	echo -e "Start checkjobs command.\nCheck jobs you submitted every $sec seconds."
+	while true
+	do
+		bjobs
+		sleep $sec
+    done
+}
 
 # caspt2
 alias dcaspt2_grep="grep ^@ ${MOL}_${MOL}.out && cat ${MOL}.caspt2.out  | awk '\$1 ~ /e2.$/{print}/Total/{print}/CASCI ENERGY/{getline;print \"CASCI energy is \" \$2 \" a.u.\"}'"
