@@ -1,5 +1,5 @@
 # dotfiles
 
 ```
-sh setup.sh
+bash setup.sh
 ```
