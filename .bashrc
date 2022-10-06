@@ -95,7 +95,7 @@ export LS_COLORS=$LS_COLORS:'di=0;36' # Change ls color to cyan
 module use --append "$HOME/modulefiles" # Add my modules
 module purge 		# deactivate all modules
 module load cmake 	# Load default cmake
-module load git 	# Load git
+# module load git 	# Load git
 #COMMENT
 
 #########################
@@ -139,14 +139,6 @@ alias dcaspt2_grep="grep ^@ ${MOL}_${MOL}.out && cat ${MOL}.caspt2.out  | awk '\
 alias dcaspt2_grep_mp2="grep ^@ ${MOL}_${MOL}.out | grep MP2 | cat && cat ${MOL}.caspt2.out  | awk '\$1 ~ /e2.$/{print}/Total/{print}/CASCI ENERGY/{getline;print \"CASCI energy is \" \$2 \" a.u.\"}'"
 alias caspt2_grep="cat ${MOL}.caspt2.out  | awk '\$1 ~ /e2.$/{print}/Total/{print}/CASCI ENERGY/{getline;print \"CASCI energy is \" \$2 \" a.u.\"}'"
 
-# git
-alias ga="git add"
-alias gb="git branch"
-alias gba="git branch -a"
-alias gc="git commit"
-alias gl="git log"
-alias gst="git status"
-
 #########################
 # fzf
 #########################
@@ -165,3 +157,11 @@ export FZF_DEFAULT_OPTS='--height 80%'
 # IDEBUG is debug options for Intel Fortran. GDEBUG is for GNU Fortran.
 export IDEBUG="-check -traceback -debug extended -debug-parameters -warn"
 export GDEBUG="-Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1 -g -fcheck=all -fbacktrace"
+
+
+#########################
+# Nodenv
+#########################
+
+export PATH="$HOME/.nodenv/bin:$PATH"
+eval "$(nodenv init -)"

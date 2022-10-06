@@ -19,3 +19,5 @@ for file in "${DOTFILES[@]}"
 do
   ln -s "$FILEPATH/$file" "$HOME/$file"
 done
+
+# ~/.local/share/vim-lsp-settings/servers/pylsp-all/venv/bin/pip installl pylsp-mypy pylsp-black

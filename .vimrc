@@ -14,18 +14,20 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-" Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
-Plug 'rudrab/vimf90'
 call plug#end()
 
 " Tab settings 
 set tabstop=4
 set shiftwidth=4
 
+
+let fortran_linter=2
+let fprettify_options='--silent -i 4 --strict-indent'
 " Color Setting
 hi Comment ctermfg=darkgray
 
@@ -36,5 +38,6 @@ set showcmd " Display the number of hits when you search a string
 set wildmode=list:longest
 
 set cursorline
+set nofoldenable
 " Aliases
 cnoreabbrev vs vsplit
