@@ -1,7 +1,8 @@
 " Install vim-plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " Run PlugInstall if there are missing plugins
@@ -10,7 +11,8 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 \| endif
 
 " Plugins
-call plug#begin('~/.vim/plugged')
+let plugged_dir = has('nvim') ? stdpath('data') . '/plugged' :  '~/.vim/plugged'
+call plug#begin(plugged_dir)
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
@@ -47,8 +49,10 @@ set nofoldenable
 " Aliases
 cnoreabbrev vs vsplit
 
-" LSP
+" Coc-nvim
+let g:coc_disable_startup_warning = 1
 
+" LSP
 let g:lsp_settings = {
 \   'pylsp-all': {
 \     'workspace_config': {
