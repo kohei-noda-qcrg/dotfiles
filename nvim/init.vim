@@ -21,12 +21,13 @@ Plug 'honza/vim-snippets'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'rudrab/vimf90'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'github/copilot.vim'
 call plug#end()
 
-" Tab settings 
+" Tab settings
 set tabstop=4
 set shiftwidth=4
 
@@ -36,9 +37,10 @@ let g:fprettify_options='--silent -i 4 --strict-indent'
 " Color Setting
 hi Comment ctermfg=darkgray
 
+set mouse=a
 set number
 set incsearch " Incremental search ( Start search when you input fisrt character )
-set smartindent " Auto indent 
+set smartindent " Auto indent
 set showcmd " Display the number of hits when you search a string
 set wildmode=longest,list
 

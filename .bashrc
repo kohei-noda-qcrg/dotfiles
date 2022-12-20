@@ -90,11 +90,12 @@ export LS_COLORS=$LS_COLORS:'di=0;36' # Change ls color to cyan
 #########################
 # Module load
 #########################
-
+module use --append "/opt/intel/oneapi/modulefiles-HPCS"
 #<< "#COMMENT"
 module use --append "$HOME/modulefiles" # Add my modules
 module purge 		# deactivate all modules
 module load cmake 	# Load default cmake
+module load inspector advisor
 # module load git 	# Load git
 #COMMENT
 
