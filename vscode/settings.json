@@ -1,12 +1,22 @@
 {
     // General
-    "editor.rulers": [132],
+    "editor.rulers": [
+        132
+    ],
+    "files.autoSave": "afterDelay",
+    "workbench.editor.enablePreview": false,
     // Fortran
     "fortran.formatting.formatter": "fprettify",
     "fortran.formatting.fprettifyArgs": [
         "-i 4",
-        "--strict-indent"
+        "--strict-indent",
+        // "--disable-whitespace"
     ],
+    // "fortran.formatting.formatter": "findent",
+    // "fortran.formatting.findentArgs": [
+    //     "-i 4",
+    //     "--strict-indent"
+    // ],
     "fortran.linter.compiler": "gfortran",
     "fortran.formatting.path": "/home/noda/.pyenv/shims",
     "fortran.linter.compilerPath": "/usr/bin/gfortran",
@@ -15,6 +25,9 @@
     "python.defaultInterpreterPath": "/home/noda/.pyenv/shims/python",
     "python.formatting.provider": "black",
     "python.formatting.blackPath": "/home/noda/.pyenv/shims/black",
+    "python.formatting.blackArgs": [
+        "--line-length=1200"
+    ],
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Path": "/home/noda/.pyenv/shims/flake8",
     "python.linting.flake8Args": [

@@ -90,8 +90,9 @@ export LS_COLORS=$LS_COLORS:'di=0;36' # Change ls color to cyan
 #########################
 # Module load
 #########################
-module use --append "/opt/intel/oneapi/modulefiles-HPCS"
-#<< "#COMMENT"
+module restore > /dev/null
+<< "#COMMENT"
+#module use --append "/opt/intel/oneapi/modulefiles-HPCS"
 module use --append "$HOME/modulefiles" # Add my modules
 module purge 		# deactivate all modules
 module load cmake 	# Load default cmake
@@ -134,11 +135,6 @@ function checkjobs() {
 		sleep $sec
     done
 }
-
-# caspt2
-alias dcaspt2_grep="grep ^@ ${MOL}_${MOL}.out && cat ${MOL}.caspt2.out  | awk '\$1 ~ /e2.$/{print}/Total/{print}/CASCI ENERGY/{getline;print \"CASCI energy is \" \$2 \" a.u.\"}'"
-alias dcaspt2_grep_mp2="grep ^@ ${MOL}_${MOL}.out | grep MP2 | cat && cat ${MOL}.caspt2.out  | awk '\$1 ~ /e2.$/{print}/Total/{print}/CASCI ENERGY/{getline;print \"CASCI energy is \" \$2 \" a.u.\"}'"
-alias caspt2_grep="cat ${MOL}.caspt2.out  | awk '\$1 ~ /e2.$/{print}/Total/{print}/CASCI ENERGY/{getline;print \"CASCI energy is \" \$2 \" a.u.\"}'"
 
 #########################
 # fzf
