@@ -27,6 +27,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'rudrab/vimf90'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'github/copilot.vim'
+Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 " Tab settings

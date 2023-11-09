@@ -36,13 +36,11 @@ MPI=IntelMPI
 #MPI=MPICH
 #MPI=MPICH2
 
-for script in $SCRIPTDIR/$COMPILER/*.sh $SCRIPTDIR/$COMPILER/$MPI/*.sh $SCRIPTDIR/*.sh
-do
+for script in $SCRIPTDIR/$COMPILER/*.sh $SCRIPTDIR/$COMPILER/$MPI/*.sh $SCRIPTDIR/*.sh; do
 	if [ -r $script ]; then
 		. $script
 	fi
 done
-
 
 #########################
 # OpenMP, MKL parallel
@@ -74,13 +72,13 @@ export SLEPC_DIR=$HOME/Software/slepc/slepc-3.16.1
 ########################
 # path
 ########################
-export PATH=$HOME/batch/analyze:$PATH
+#export PATH=$HOME/batch/analyze:$PATH
 
 #########################
 # History
 #########################
 HISTCONTROL=ignoreboth # Ignore duplicated commands
-HISTIGNORE='exit' # Ignore exit command
+HISTIGNORE='exit'      # Ignore exit command
 
 #########################
 # Color Settings
@@ -90,24 +88,32 @@ export LS_COLORS=$LS_COLORS:'di=0;36' # Change ls color to cyan
 #########################
 # Module load
 #########################
-module restore > /dev/null
-<< "#COMMENT"
-#module use --append "/opt/intel/oneapi/modulefiles-HPCS"
+#module restore >/dev/null
+#<<"#COMMENT"
+module use --append "/opt/intel/oneapi/modulefiles-HPCS"
 module use --append "$HOME/modulefiles" # Add my modules
 module purge 		# deactivate all modules
-module load cmake 	# Load default cmake
+# module load cmake 	# Load default cmake
 module load inspector advisor
 # module load git 	# Load git
 #COMMENT
+module use --append "/home/noda/toyprograms/modulefiles"
+
+COMMON_MODULEDIR=/home/.common/modulefiles/etc
+if [ -d $COMMON_MODULEDIR ]; then
+	module use $COMMON_MODULEDIR
+fi
+
+module load lsf-ce10.1
+module load 16c01
 
 #########################
 # Git settings
 #########################
-source "$HOME/.config/git/.git-completion.bash" # bash/zsh completion support for core Git
-source "$HOME/.config/git/git-prompt.sh" # Allows you to see repository status in your prompt
-export GIT_PS1_SHOWDIRTYSTATE=1 # if you set GIT_PS1_SHOWDIRTYSTATE to a nonempty value, unstaged (*) and staged (+) changes will be shown next to the branch name.
+source "$HOME/.config/git/.git-completion.bash"                                                               # bash/zsh completion support for core Git
+source "$HOME/.config/git/git-prompt.sh"                                                                      # Allows you to see repository status in your prompt
+export GIT_PS1_SHOWDIRTYSTATE=1                                                                               # if you set GIT_PS1_SHOWDIRTYSTATE to a nonempty value, unstaged (*) and staged (+) changes will be shown next to the branch name.
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] ' # Change your PS1 to call __git_ps1 as command-substitution: Bash: PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-
 
 #########################
 # Aliases
@@ -124,16 +130,18 @@ function checkjobs() {
 		sec=$default_sec
 	else
 		case $1 in
-			''|*[!0-9]*) echo -e "** WARNING **\nThe variable you specified is not a natural number.\nUse the default setting...\n"; sec=$default_sec  ;;
-			*) sec=$1 ;;
+		'' | *[!0-9]*)
+			echo -e "** WARNING **\nThe variable you specified is not a natural number.\nUse the default setting...\n"
+			sec=$default_sec
+			;;
+		*) sec=$1 ;;
 		esac
 	fi
 	echo -e "Start checkjobs command.\nCheck jobs you submitted every $sec seconds."
-	while true
-	do
+	while true; do
 		bjobs
 		sleep $sec
-    done
+	done
 }
 
 #########################
@@ -155,10 +163,16 @@ export FZF_DEFAULT_OPTS='--height 80%'
 export IDEBUG="-check -traceback -debug extended -debug-parameters -warn"
 export GDEBUG="-Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1 -g -fcheck=all -fbacktrace"
 
-
 #########################
 # Nodenv
 #########################
 
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
+
+
+export FI_PROVIDER=TCP # Setting for TCP
+#export FI_PROVIDER=MLX  # Setting for infiniband
+
+# intel-oneapi setvars
+. /opt/intel/oneapi/setvars.sh intel64 --force >/dev/null

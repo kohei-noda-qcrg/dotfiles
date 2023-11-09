@@ -3,6 +3,8 @@
     "editor.rulers": [
         132
     ],
+    "git.allowForcePush": true,
+    "editor.formatOnSave": true,
     "files.autoSave": "afterDelay",
     "workbench.editor.enablePreview": false,
     // Fortran
@@ -22,6 +24,7 @@
     "fortran.linter.compilerPath": "/usr/bin/gfortran",
     "fortran.fortls.path": "/home/noda/.pyenv/shims/fortls",
     // Python
+    "python.terminal.activateEnvironment": false,
     "python.defaultInterpreterPath": "/home/noda/.pyenv/shims/python",
     "python.formatting.provider": "black",
     "python.formatting.blackPath": "/home/noda/.pyenv/shims/black",
