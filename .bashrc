@@ -113,8 +113,7 @@ module load 16c01
 source "$HOME/.config/git/.git-completion.bash"                                                               # bash/zsh completion support for core Git
 source "$HOME/.config/git/git-prompt.sh"                                                                      # Allows you to see repository status in your prompt
 export GIT_PS1_SHOWDIRTYSTATE=1                                                                               # if you set GIT_PS1_SHOWDIRTYSTATE to a nonempty value, unstaged (*) and staged (+) changes will be shown next to the branch name.
-export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] ' # Change your PS1 to call __git_ps1 as command-substitution: Bash: PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-
+export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\n$\[\033[00m\] ' # Change your PS1 to call __git_ps1 as command-substitution: Bash: PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 #########################
 # Aliases
 #########################
