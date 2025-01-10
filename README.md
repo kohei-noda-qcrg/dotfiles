@@ -1,6 +1,9 @@
 # dotfiles
 
 ```
+NAME=yourname
+EMAIL=youremail@example.com
+sed -e "s/@USERNAME@/$NAME/" -e "s/@USEREMAIL@/$EMAIL/" ./git/.gitconfig.in > .gitconfig
 bash setup.sh
 ```
 

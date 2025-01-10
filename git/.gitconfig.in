@@ -1,0 +1,16 @@
+[init]
+        defaultBranch = main
+[core]
+        editor = nvim
+[alias]
+        a = add
+        br = branch
+        ch = checkout
+        co = commit
+        st = status
+        unstage = reset HEAD --
+[rebase]
+        autostash = true
+[user]
+        name = @USERNAME@
+        email = @USEREMAIL@
