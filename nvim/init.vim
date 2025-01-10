@@ -16,8 +16,6 @@ call plug#begin(plugged_dir)
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'honza/vim-snippets'
 Plug 'mattn/vim-lsp-settings'
@@ -27,7 +25,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'rudrab/vimf90'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'github/copilot.vim'
-" Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 " Tab settings
@@ -83,6 +80,11 @@ let g:lsp_settings = {
 \       }
 \     }
 \   },
+\   'clangd': {
+\     'cmd': ['clangd', '--enable-config'],
+\     'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
+\   },
 \}
 let g:lsp_diagnostic_echo_cursor = 1
 autocmd BufWritePre <buffer> LspDocumentFormatSync
+nnoremap <expr> <C-]> execute('LspPeekDefinition') =~ "not supported" ? "\<C-]>" : ":LspDefinition<cr>"
