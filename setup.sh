@@ -16,6 +16,9 @@ DOTFILES=$(find . -maxdepth 1 -type f | grep "^\./\.")  # Find all dotfiles in t
 
 for file in "${DOTFILES[@]}"
 do
+  if [ "$file" == "./.gitignore" ]; then
+    continue
+  fi
   ln -s "$FILEPATH/$file" "$HOME/$file"
 done
 
