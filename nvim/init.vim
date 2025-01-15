@@ -22,7 +22,6 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'rudrab/vimf90'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'github/copilot.vim'
 call plug#end()
@@ -30,7 +29,6 @@ call plug#end()
 " Tab settings
 set tabstop=4
 set shiftwidth=4
-
 
 let g:fortran_linter=2
 let g:fprettify_options='--silent -i 4 --strict-indent'
