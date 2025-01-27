@@ -11,5 +11,11 @@ bash setup.sh
 
 - You must specify in absolute path
 ```sh
-ln -s /abs/path/to/dotfiles/vscode/settings.json ~/.vscode-server/data/Machine
+ln -s /abs/path/to/this/repo/vscode/settings.json ~/.vscode-server/data/Machine
+```
+
+## GitHub CLI
+
+```sh
+gh alias import /path/to/this/repo/github/github-cli/alias
 ```
