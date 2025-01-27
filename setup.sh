@@ -19,6 +19,9 @@ do
   echo $file
   if [ "$file" == "./.gitignore" ]; then
     continue
+  elif [ "$file" == "./.bashrc" ]; then
+    cat $file >> $HOME/.bashrc
+    continue
   fi
   ln -sf "$FILEPATH/$file" "$HOME/$file"
 done
