@@ -7,9 +7,13 @@ SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd)
 files=$(find "$SCRIPT_DIR/in" -type f)
 for file in $files; do
   if [[ "$file" =~ .gitconfig.in$ ]]; then
-    read -rp "Enter your git user name: " git_user_name
-    read -rp "Enter your git email: " git_email
-    sed -e "s|@USERNAME@|$git_user_name|g" -e "s|@USEREMAIL@|$git_email|g" "$file" > "$SCRIPT_DIR/link/.gitconfig"
+    if [[ -z ${GIT_USERNAME:-} ]]; then
+      read -rp "Enter your git user name: " GIT_USERNAME
+    fi
+    if [[ -z ${GIT_EMAIL:-} ]]; then
+      read -rp "Enter your git email: " GIT_EMAIL
+    fi
+    sed -e "s|@USERNAME@|$GIT_USERNAME|g" -e "s|@USEREMAIL@|$GIT_EMAIL|g" "$file" > "$SCRIPT_DIR/link/.gitconfig"
   elif [[ "$file" =~ .github-cli/aliases.yml$ ]]; then
     # if gh command is installed, set up alias
     if command -v gh > /dev/null; then
