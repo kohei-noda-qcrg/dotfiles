@@ -25,6 +25,6 @@ export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border'
 
 # source
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" # rust
-[ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
-[ -f "$HOME/.local/bin/env" ] &&. "$HOME/.local/bin/env" # uv
-[ -f "$HOME/.local/share/z/z.sh ] && source "$HOME/.local/share/z/z.sh"
+[ -f "$HOME/.fzf.bash" ] && . "$HOME/.fzf.bash"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env" # uv
+[ -f "$HOME/.local/share/z/z.sh ] && . "$HOME/.local/share/z/z.sh"
