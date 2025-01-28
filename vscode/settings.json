@@ -1,44 +1,7 @@
 {
-    // General
-    "editor.rulers": [
-        132
-    ],
-    "git.allowForcePush": true,
     "editor.formatOnSave": true,
     "files.autoSave": "afterDelay",
     "workbench.editor.enablePreview": false,
-    // Fortran
-    "fortran.formatting.formatter": "fprettify",
-    "fortran.formatting.fprettifyArgs": [
-        "-i 4",
-        "--strict-indent",
-        // "--disable-whitespace"
-    ],
-    // "fortran.formatting.formatter": "findent",
-    // "fortran.formatting.findentArgs": [
-    //     "-i 4",
-    //     "--strict-indent"
-    // ],
-    "fortran.linter.compiler": "gfortran",
-    "fortran.formatting.path": "/home/noda/.pyenv/shims",
-    "fortran.linter.compilerPath": "/usr/bin/gfortran",
-    "fortran.fortls.path": "/home/noda/.pyenv/shims/fortls",
-    // Python
-    "python.terminal.activateEnvironment": false,
-    "python.defaultInterpreterPath": "/home/noda/.pyenv/shims/python",
-    "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/home/noda/.pyenv/shims/black",
-    "python.formatting.blackArgs": [
-        "--line-length=1200"
-    ],
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Path": "/home/noda/.pyenv/shims/flake8",
-    "python.linting.flake8Args": [
-        "--max-line-length=1200",
-        "--ignore=E203,W503,E501"
-    ],
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": false,
-    "python.linting.mypyEnabled": true,
-    "python.linting.mypyPath": "/home/noda/.pyenv/shims/mypy",
+    "C_Cpp.clang_format_style": "file:@HOME@/.clang-format",
+    "mesonbuild.configureOnOpen": false
 }
