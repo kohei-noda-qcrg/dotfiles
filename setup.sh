@@ -1,21 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-FILEPATH=$(cd "$(dirname "$0")" && pwd)
-pushd "$FILEPATH" || exit
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+LINK_DIR="$SCRIPT_DIR/link"
 
-DOTFILES=($(find . -maxdepth 1 -type f | grep "^\./\."))  # Find all dotfiles in the current directory
-
-for file in "${DOTFILES[@]}"
-do
-  echo $file
-  if [ "$file" == "./.gitignore" ]; then
-    continue
-  elif [ "$file" == "./.bashrc" ]; then
-    cat $file >> $HOME/.bashrc
-    continue
-  fi
-  ln -sf "$FILEPATH/$file" "$HOME/$file"
+all_files=$(find "$LINK_DIR" -type f)
+for file in $all_files; do
+  relative_path=${file#"$LINK_DIR"/}
+  echo "ln -sf $file $HOME/$relative_path"
+  ln -sf "$file" "$HOME/$relative_path"
 done
 
 # ~/.local/share/vim-lsp-settings/servers/pylsp-all/venv/bin/pip installl pylsp-mypy pylsp-black
