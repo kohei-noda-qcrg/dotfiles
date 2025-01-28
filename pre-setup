@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -eu
+
+SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd)
+
+files=$(find "$SCRIPT_DIR/in" -type f)
+for file in $files; do
+  if [[ "$file" =~ .gitconfig.in$ ]]; then
+    read -rp "Enter your git user name: " git_user_name
+    read -rp "Enter your git email: " git_email
+    sed -e "s|@USERNAME@|$git_user_name|g" -e "s|@USEREMAIL@|$git_email|g" "$file" > "$SCRIPT_DIR/link/.gitconfig"
+  elif [[ "$file" =~ .github-cli/aliases.yml$ ]]; then
+    # if gh command is installed, set up alias
+    if command -v gh > /dev/null; then
+      gh alias import "$file"
+    fi
+  elif [[ "$file" =~ .vscode/settings.json.in$ ]]; then
+    dest="$SCRIPT_DIR/link/.vscode-server/data/Machine/settings.json"
+    mkdir -p "$(dirname "$dest")"
+    sed -e "s|@HOME@|$HOME|g" "$file" > "$dest"
+  else
+    echo "The filename is not .gitconfig.in: $file"
+  fi
+done
+
