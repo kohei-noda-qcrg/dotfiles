@@ -20,7 +20,7 @@ for file in $files; do
     mkdir -p "$(dirname "$dest")"
     sed -e "s|@HOME@|$HOME|g" "$file" > "$dest"
   else
-    echo "The filename is not .gitconfig.in: $file"
+    echo "Unknown file $file. skip it"
   fi
 done
 
