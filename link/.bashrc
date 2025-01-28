@@ -7,6 +7,9 @@ esac
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# directory colors
+test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+
 # aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
