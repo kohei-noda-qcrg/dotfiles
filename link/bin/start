@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -eu
+
+fcitx5 &
+
+exec sway
