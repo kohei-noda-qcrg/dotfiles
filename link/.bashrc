@@ -19,6 +19,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# export
+export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] $\[\033[00m\] '
+
 # source
 [ -f "$HOME/.config/git/git-prompt.sh" ] && . "$HOME/.config/git/git-prompt.sh"
 [ -f "$HOME/.config/git/git-completion.bash" ] && . "$HOME/.config/git/git-completion.bash"
