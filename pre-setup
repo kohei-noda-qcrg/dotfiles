@@ -4,6 +4,34 @@ set -eu
 
 SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd)
 
+show_help() {
+	echo "Usage: $0 [options]"
+	echo "Options:"
+	echo "  -y, --yes           Answer yes to all questions"
+	echo "  --help              Show this help message"
+}
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+	arg="$1"
+	case $arg in
+  -y|--yes)
+    YES=1
+    shift
+    ;;
+	--help)
+		show_help
+		exit 0
+		;;
+	*)
+		echo "Unknown option: $arg"
+		show_help
+		exit 1
+		;;
+	esac
+done
+
+
 files=$(find "$SCRIPT_DIR/in" -type f)
 for file in $files; do
   if [[ "$file" =~ .gitconfig.in$ ]]; then
@@ -24,7 +52,11 @@ for file in $files; do
     mkdir -p "$(dirname "$dest")"
     sed -e "s|@HOME@|$HOME|g" "$file" > "$dest"
   elif [[ "$file" =~ .config/sway/.+$ ]]; then
-    read -rp "Do you want to use sway config file $file? [y/N]: " ans
+    if [[ -n ${YES:-} ]]; then
+      ans="y"
+    else
+      read -rp "Do you want to use sway config file $file? [y/N]: " ans
+    fi
     if [[ "$ans" == "y" || "$ans" == "Y" ]]; then
       dest="$SCRIPT_DIR/link/.config/sway/config.d/$(basename "$file")"
       mkdir -p "$(dirname "$dest")"
