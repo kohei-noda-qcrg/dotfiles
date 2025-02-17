@@ -15,10 +15,10 @@ show_help() {
 while [[ $# -gt 0 ]]; do
 	arg="$1"
 	case $arg in
-  -y|--yes)
-    YES=1
-    shift
-    ;;
+	-y|--yes)
+		YES=1
+		shift
+		;;
 	--help)
 		show_help
 		exit 0
@@ -34,39 +34,39 @@ done
 
 files=$(find "$SCRIPT_DIR/in" -type f)
 for file in $files; do
-  if [[ "$file" =~ .gitconfig.in$ ]]; then
-    if [[ -z ${GIT_USERNAME:-} ]]; then
-      read -rp "Enter your git user name: " GIT_USERNAME
-    fi
-    if [[ -z ${GIT_EMAIL:-} ]]; then
-      read -rp "Enter your git email: " GIT_EMAIL
-    fi
-    sed -e "s|@USERNAME@|$GIT_USERNAME|g" -e "s|@USEREMAIL@|$GIT_EMAIL|g" "$file" > "$SCRIPT_DIR/link/.gitconfig"
-  elif [[ "$file" =~ .github-cli/aliases.yml$ ]]; then
-    # if gh command is installed, set up alias
-    if command -v gh > /dev/null; then
-      gh alias import "$file"
-    fi
-  elif [[ "$file" =~ .vscode/settings.json.in$ ]]; then
-    dest="$SCRIPT_DIR/link/.vscode-server/data/Machine/settings.json"
-    mkdir -p "$(dirname "$dest")"
-    sed -e "s|@HOME@|$HOME|g" "$file" > "$dest"
-  elif [[ "$file" =~ .config/sway/.+$ ]]; then
-    if [[ -n ${YES:-} ]]; then
-      ans="y"
-    else
-      read -rp "Do you want to use sway config file $file? [y/N]: " ans
-    fi
-    if [[ "$ans" == "y" || "$ans" == "Y" ]]; then
-      dest="$SCRIPT_DIR/link/.config/sway/config.d/$(basename "$file")"
-      mkdir -p "$(dirname "$dest")"
-      cp "$file" "$dest"
-      echo "Copied $file to $dest"
-    else
-      echo "Skipping $file"
-    fi
-  else
-    echo "Unknown file $file. skip it"
-  fi
+	if [[ "$file" =~ .gitconfig.in$ ]]; then
+		if [[ -z ${GIT_USERNAME:-} ]]; then
+			read -rp "Enter your git user name: " GIT_USERNAME
+		fi
+		if [[ -z ${GIT_EMAIL:-} ]]; then
+			read -rp "Enter your git email: " GIT_EMAIL
+		fi
+		sed -e "s|@USERNAME@|$GIT_USERNAME|g" -e "s|@USEREMAIL@|$GIT_EMAIL|g" "$file" > "$SCRIPT_DIR/link/.gitconfig"
+	elif [[ "$file" =~ .github-cli/aliases.yml$ ]]; then
+		# if gh command is installed, set up alias
+		if command -v gh > /dev/null; then
+			gh alias import "$file"
+		fi
+	elif [[ "$file" =~ .vscode/settings.json.in$ ]]; then
+		dest="$SCRIPT_DIR/link/.vscode-server/data/Machine/settings.json"
+		mkdir -p "$(dirname "$dest")"
+		sed -e "s|@HOME@|$HOME|g" "$file" > "$dest"
+	elif [[ "$file" =~ .config/sway/.+$ ]]; then
+		if [[ -n ${YES:-} ]]; then
+			ans="y"
+		else
+			read -rp "Do you want to use sway config file $file? [y/N]: " ans
+		fi
+		if [[ "$ans" == "y" || "$ans" == "Y" ]]; then
+			dest="$SCRIPT_DIR/link/.config/sway/config.d/$(basename "$file")"
+			mkdir -p "$(dirname "$dest")"
+			cp "$file" "$dest"
+			echo "Copied $file to $dest"
+		else
+			echo "Skipping $file"
+		fi
+	else
+		echo "Unknown file $file. skip it"
+	fi
 done
 
