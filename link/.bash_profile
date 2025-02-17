@@ -7,3 +7,7 @@ export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border'
 # source
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" # rust
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env" # uv
+
+if [ -n "$BASH_VERSION" ]; then
+	if [ -f "$HOME/.bashrc" ]; then . "$HOME/.bashrc"; fi
+fi
