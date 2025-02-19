@@ -32,24 +32,21 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Download git completion and prompt scripts
-if type wget > /dev/null; then
-	fetch="wget"
-elif type curl > /dev/null; then
+if type curl > /dev/null; then
 	fetch="curl -LO"
+elif type wget > /dev/null; then
+	fetch="wget -nc"
 else
 	echo "Please install wget or curl"
 	exit 1
 fi
-GITDIR="$SCRIPT_DIR/link/.config/git"
-if [[ -d "$GITDIR" ]]; then
-	rm -r "$GITDIR"
-fi
-mkdir -p "$GITDIR"
+GITDIR="$SCRIPT_DIR/in/.config/git"
 cd "$GITDIR"
 HASH=c032b1d8bc29de4fb1322d841d8216ca961dcb53
 BASE="https://raw.githubusercontent.com/git/git/$HASH/contrib/completion"
 $fetch "$BASE/git-completion.bash"
 $fetch "$BASE/git-prompt.sh"
+sha512sum -c sha512-checksum.txt
 cd "$SCRIPT_DIR"
 
 files=$(find "$SCRIPT_DIR/in" -type f)
