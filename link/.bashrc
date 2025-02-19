@@ -30,4 +30,6 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\
 [ -f "/etc/modules/init/bash" ] && . "/etc/modules/init/bash"
 [ -f "/usr/share/modules/init/bash" ] && . "/usr/share/modules/init/bash"
 
-module use --append "$HOME/modulefiles"
+if type module > /dev/null; then
+   module use --append "$HOME/modulefiles"
+fi
