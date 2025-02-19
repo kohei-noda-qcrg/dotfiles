@@ -27,3 +27,7 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\
 [ -f "$HOME/.config/git/git-completion.bash" ] && . "$HOME/.config/git/git-completion.bash"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
 [ -f "$HOME/.local/share/z/z.sh" ] && . "$HOME/.local/share/z/z.sh"
+[ -f "/etc/modules/init/bash" ] && . "/etc/modules/init/bash"
+[ -f "/usr/share/modules/init/bash" ] && . "/usr/share/modules/init/bash"
+
+module use --append "$HOME/modulefiles"
