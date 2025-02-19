@@ -5,6 +5,7 @@ on:
     paths-ignore:
       - ".gitignore"
       - "README.md"
+      - "LICENSE"
 
 jobs:
   test-linux:
