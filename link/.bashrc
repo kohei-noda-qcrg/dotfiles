@@ -1,8 +1,10 @@
 # If not running interactively, don't do anything
+if [ "$SHLVL" -ge 1 ]; then
 case $- in
     *i*) ;;
       *) return;;
 esac
+fi
 
 HISTSIZE=1000
 HISTFILESIZE=2000
