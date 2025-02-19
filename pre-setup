@@ -31,6 +31,26 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
+# Download git completion and prompt scripts
+if type wget > /dev/null; then
+	fetch="wget"
+elif type curl > /dev/null; then
+	fetch="curl -LO"
+else
+	echo "Please install wget or curl"
+	exit 1
+fi
+GITDIR="$SCRIPT_DIR/link/.config/git"
+if [[ -d "$GITDIR" ]]; then
+	rm -r "$GITDIR"
+fi
+mkdir -p "$GITDIR"
+cd "$GITDIR"
+HASH=c032b1d8bc29de4fb1322d841d8216ca961dcb53
+BASE="https://raw.githubusercontent.com/git/git/$HASH/contrib/completion"
+$fetch "$BASE/git-completion.bash"
+$fetch "$BASE/git-prompt.sh"
+cd "$SCRIPT_DIR"
 
 files=$(find "$SCRIPT_DIR/in" -type f)
 for file in $files; do
