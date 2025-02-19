@@ -17,3 +17,5 @@ jobs:
         run: GIT_USERNAME="test user" GIT_EMAIL="example@example.com" ./pre-setup -y
       - name: setup
         run: ./setup
+      - name: source .bash_profile
+        run: . ~/.bash_profile
