@@ -82,6 +82,13 @@ for file in $files; do
 		else
 			echo "Skipping $file"
 		fi
+	elif [[ "$file" =~ .config/git/git-.+$ ]]; then
+		dest="$SCRIPT_DIR/link/.config/git"
+		mkdir -p "$dest"
+		cp "$file" "$dest"
+		echo "Copied $file to $dest"
+	elif [[ "$file" =~ .config/git/sha512-checksum.txt$ ]]; then
+		echo "Skipping $file"
 	else
 		echo "Unknown file $file. skip it"
 	fi
