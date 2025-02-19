@@ -18,4 +18,4 @@ jobs:
       - name: setup
         run: ./setup
       - name: source .bash_profile
-        run: set -x && . ~/.bash_profile && set +x
+        run: bash -ic 'set -x && . ~/.bash_profile && set +x'
