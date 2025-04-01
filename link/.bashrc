@@ -20,6 +20,8 @@ alias egrep='egrep --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias vi='nvim'
+alias vim='nvim'
 
 # export
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] $\[\033[00m\] '
