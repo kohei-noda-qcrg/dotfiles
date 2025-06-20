@@ -21,7 +21,6 @@ Plug 'honza/vim-snippets'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 Plug 'sainnhe/everforest'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'github/copilot.vim'
@@ -56,9 +55,6 @@ nmap <silent> gr :LspReferences<CR>
 nmap <silent> gi :LspImplementation<CR>
 nmap <silent> gD :LspDeclaration<CR>
 nmap <silent> K :LspHover<CR>
-
-" Coc-nvim
-let g:coc_disable_startup_warning = 1
 
 " LSP
 let g:lsp_settings_filetype_python = ['ruff', 'pyright-langserver']
