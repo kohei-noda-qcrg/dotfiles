@@ -51,37 +51,22 @@ cnoreabbrev vs vsplit
 let g:coc_disable_startup_warning = 1
 
 " LSP
+let g:lsp_settings_filetype_python = ['ruff', 'pyright-langserver']
 let g:lsp_settings = {
-\   'pylsp-all': {
-\     'workspace_config': {
-\       'pylsp': {
-\         'configurationSources': ['flake8'],
-\         'plugins': {
-\           'pycodestyle': {
-\             'enabled': 0,
-\           },
-\           'mccabe': {
-\             'enabled': 0,
-\           },
-\		   'pyflakes': {
-\             'enabled': 0,
-\           },
-\		    'flake8': {
-\             'enabled': 1,
-\		      'ignore': ["E501"],
-\           },
-\		    'black': {
-\             'enabled': 1,
-\             'line_length': 1200,
-\           },
-\         },
-\       }
-\     }
-\   },
-\   'clangd': {
-\     'cmd': ['clangd', '--enable-config'],
-\     'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-\   },
+\  'pyright-langserver': {
+\    'workspace_config': {
+\      'python': {
+\        'disableOrganizeImports': v:true,
+\        'analysis': {
+\          'autoSearchPaths': v:true,
+\        }
+\      }
+\    }
+\  },
+\  'clangd': {
+\    'cmd': ['clangd', '--enable-config'],
+\    'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
+\  },
 \}
 let g:lsp_diagnostic_echo_cursor = 1
 autocmd BufWritePre <buffer> LspDocumentFormatSync
