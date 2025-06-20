@@ -50,6 +50,13 @@ set nofoldenable
 " Aliases
 cnoreabbrev vs vsplit
 
+" definition jump keybinds
+nmap <silent> gd :LspDefinition<CR>
+nmap <silent> gr :LspReferences<CR>
+nmap <silent> gi :LspImplementation<CR>
+nmap <silent> gD :LspDeclaration<CR>
+nmap <silent> K :LspHover<CR>
+
 " Coc-nvim
 let g:coc_disable_startup_warning = 1
 
