@@ -20,6 +20,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'honza/vim-snippets'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
+Plug 'sainnhe/everforest'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
@@ -34,6 +35,8 @@ let g:fortran_linter=2
 let g:fprettify_options='--silent -i 4 --strict-indent'
 " Color Setting
 hi Comment ctermfg=darkgray
+colorscheme everforest
+let g:everforest_background = 'hard'
 
 set mouse=a
 set number
