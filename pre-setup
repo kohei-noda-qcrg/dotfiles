@@ -68,20 +68,6 @@ for file in $files; do
 		dest="$SCRIPT_DIR/link/.vscode-server/data/Machine/settings.json"
 		mkdir -p "$(dirname "$dest")"
 		sed -e "s|@HOME@|$HOME|g" "$file" > "$dest"
-	elif [[ "$file" =~ .config/sway/.+$ ]]; then
-		if [[ -n ${YES:-} ]]; then
-			ans="y"
-		else
-			read -rp "Do you want to use sway config file $file? [y/N]: " ans
-		fi
-		if [[ "$ans" == "y" || "$ans" == "Y" ]]; then
-			dest="$SCRIPT_DIR/link/.config/sway/config.d/$(basename "$file")"
-			mkdir -p "$(dirname "$dest")"
-			cp "$file" "$dest"
-			echo "Copied $file to $dest"
-		else
-			echo "Skipping $file"
-		fi
 	elif [[ "$file" =~ .config/git/git-.+$ ]]; then
 		dest="$SCRIPT_DIR/link/.config/git"
 		mkdir -p "$dest"
