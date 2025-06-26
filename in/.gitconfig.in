@@ -22,3 +22,5 @@
         helper = !glab auth git-credential
 [push]
         autoSetupRemote = true
+[pull]
+        rebase = true
