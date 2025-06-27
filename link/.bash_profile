@@ -5,6 +5,7 @@ export PATH="$HOME/bin:$VOLTA_HOME/bin:$PATH"
 export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border'
 export HISTSIZE=10000
 export HIST=10000
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # source
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" # rust
