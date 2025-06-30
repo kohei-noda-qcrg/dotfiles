@@ -6,9 +6,6 @@ case $- in
 esac
 fi
 
-HISTSIZE=1000
-HISTFILESIZE=2000
-
 # directory colors
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
