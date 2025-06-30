@@ -6,6 +6,7 @@ export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border'
 export HISTSIZE=10000
 export HIST=10000
 export XDG_CONFIG_HOME="$HOME/.config"
+export EDITOR=nvim
 
 # source
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" # rust
