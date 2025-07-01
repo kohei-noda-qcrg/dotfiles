@@ -48,13 +48,16 @@ set cursorline
 set nofoldenable
 " Aliases
 cnoreabbrev vs vsplit
+cnoreabbrev bash botright terminal
 
-" definition jump keybinds
+" keybindings
 nmap <silent> gd :LspDefinition<CR>
 nmap <silent> gr :LspReferences<CR>
 nmap <silent> gi :LspImplementation<CR>
 nmap <silent> gD :LspDeclaration<CR>
 nmap <silent> K :LspHover<CR>
+nnoremap <expr> <C-]> execute('LspPeekDefinition') =~ "not supported" ? "\<C-]>" : ":LspDefinition<cr>"
+tnoremap <C-x> <C-\><C-n>  " Exit terminal mode with Ctrl-x
 
 " LSP
 let g:lsp_settings_filetype_python = ['ruff', 'pyright-langserver']
@@ -76,4 +79,3 @@ let g:lsp_settings = {
 \}
 let g:lsp_diagnostic_echo_cursor = 1
 autocmd BufWritePre <buffer> LspDocumentFormatSync
-nnoremap <expr> <C-]> execute('LspPeekDefinition') =~ "not supported" ? "\<C-]>" : ":LspDefinition<cr>"
