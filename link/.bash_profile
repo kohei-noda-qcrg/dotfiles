@@ -7,6 +7,7 @@ export HISTSIZE=10000
 export HISTFILESIZE=$HISTSIZE
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
+export COLORTERM=truecolor
 
 # source
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" # rust
