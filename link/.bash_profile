@@ -4,7 +4,7 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$HOME/bin:$VOLTA_HOME/bin:$PATH"
 export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border'
 export HISTSIZE=10000
-export HIST=10000
+export HISTFILESIZE=$HISTSIZE
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 
