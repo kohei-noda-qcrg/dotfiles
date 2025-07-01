@@ -34,3 +34,13 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\
 if type module &> /dev/null; then
    module use --append "$HOME/modulefiles"
 fi
+
+# functions
+docker() {
+    if [[ "$@" == "purge" ]]; then
+        # Remove all stopped containers, unused networks, dangling images, build chaches, and volumes
+        docker system prune -a --volumes
+    else
+        command docker "$@"
+    fi
+}
