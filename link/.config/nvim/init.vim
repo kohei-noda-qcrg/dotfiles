@@ -23,6 +23,7 @@ Plug 'mattn/vim-lsp-icons'
 Plug 'sainnhe/everforest'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'github/copilot.vim'
 call plug#end()
 
