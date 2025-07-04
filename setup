@@ -9,8 +9,7 @@ for file in $all_files; do
 	relative_path=${file#"$LINK_DIR"/}
 	dest="$HOME/$relative_path"
 	mkdir -p "$(dirname "$dest")"
-	echo "ln -sf $file $dest"
-	ln -sf "$file" "$dest"
+	cmd="ln -sf $file $dest"
+	echo "$cmd"
+	command $cmd
 done
-
-# ~/.local/share/vim-lsp-settings/servers/pylsp-all/venv/bin/pip installl pylsp-mypy pylsp-black
