@@ -50,6 +50,8 @@ set nofoldenable
 " Aliases
 cnoreabbrev vs vsplit
 cnoreabbrev bash botright terminal
+" vash is a short-term for 'vertical bash'
+cnoreabbrev vash vertical botright terminal
 
 " keybindings
 nmap <silent> gd :LspDefinition<CR>
