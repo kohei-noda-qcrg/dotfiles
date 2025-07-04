@@ -24,6 +24,7 @@ Plug 'sainnhe/everforest'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'fresh2dev/zellij.vim'
 Plug 'github/copilot.vim'
 call plug#end()
 
