@@ -41,13 +41,21 @@ else
 	exit 1
 fi
 GITDIR="$SCRIPT_DIR/in/.config/git"
-cd "$GITDIR"
+pushd "$GITDIR"
 HASH=c032b1d8bc29de4fb1322d841d8216ca961dcb53
 BASE="https://raw.githubusercontent.com/git/git/$HASH/contrib/completion"
 $fetch "$BASE/git-completion.bash"
 $fetch "$BASE/git-prompt.sh"
 sha512sum -c sha512-checksum.txt
-cd "$SCRIPT_DIR"
+popd
+
+ZELLIJDIR="$SCRIPT_DIR/in/.config/zellij/plugins"
+pushd "$ZELLIJDIR"
+FILE="https://github.com/fresh2dev/zellij-autolock/releases/latest/download/zellij-autolock.wasm"
+$fetch "$FILE"
+# sha512-checksum.txt release version is 0.2.2, https://github.com/fresh2dev/zellij-autolock/releases/tag/0.2.2
+sha512sum -c sha512-checksum.txt
+popd
 
 files=$(find "$SCRIPT_DIR/in" -type f)
 for file in $files; do
@@ -73,7 +81,12 @@ for file in $files; do
 		mkdir -p "$dest"
 		cp "$file" "$dest"
 		echo "Copied $file to $dest"
-	elif [[ "$file" =~ .config/git/sha512-checksum.txt$ ]]; then
+	elif [[ "$file" =~ .config/zellij/plugins/zellij-autolock.wasm$ ]]; then
+		dest="$SCRIPT_DIR/link/.config/zellij/plugins"
+		mkdir -p "$dest"
+		cp "$file" "$dest"
+		echo "Copied $file to $dest"
+	elif [[ "$file" =~ sha512-checksum.txt$ ]]; then
 		echo "Skipping $file"
 	else
 		echo "Unknown file $file. skip it"
