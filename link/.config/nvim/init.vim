@@ -13,17 +13,21 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 " Plugins
 let plugged_dir = has('nvim') ? stdpath('data') . '/plugged' :  '~/.vim/plugged'
 call plug#begin(plugged_dir)
-Plug 'junegunn/vim-easy-align'
-Plug 'tpope/vim-surround'
+" Appearance
+Plug 'sainnhe/everforest'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'vim-airline/vim-airline'
-Plug 'prabirshrestha/vim-lsp'
+Plug 'ntpeters/vim-better-whitespace'
+" Utilities
+Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+" LSP
+Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
-Plug 'sainnhe/everforest'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'lewis6991/gitsigns.nvim'
+" External command
 Plug 'fresh2dev/zellij.vim'
 Plug 'github/copilot.vim'
 call plug#end()
