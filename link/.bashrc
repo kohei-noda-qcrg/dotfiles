@@ -19,6 +19,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias vi='nvim'
 alias vim='nvim'
+alias fm='yazi' # file manager
 alias ij='zellij'
 
 # export
