@@ -3,9 +3,9 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lsp-signature-help",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "L3MON4D3/LuaSnip",
@@ -13,7 +13,6 @@ return {
     },
     config = function()
         require("mason").setup()
-        require("mason-lspconfig").setup()
         local lspconfig = require("lspconfig")
         local cmp = require("cmp")
         local luasnip = require("luasnip")
@@ -28,7 +27,7 @@ return {
             mapping = require("cmp").mapping.preset.insert({
                 ["<C-b>"] = require("cmp").mapping.scroll_docs(-4),
                 ["<C-f>"] = require("cmp").mapping.scroll_docs(4),
-                ["<C-Space>"] = require("cmp").mapping.complete(),
+                ["<C-k>"] = require("cmp").mapping.complete(),
                 ["<C-e>"] = require("cmp").mapping.abort(),
                 ["<CR>"] = require("cmp").mapping.confirm({ select = true }),
                 ["<Tab>"] = cmp.mapping(function(fallback)
@@ -52,6 +51,7 @@ return {
             }),
             sources = require("cmp").config.sources({
                 { name = "nvim_lsp" },
+                { name = "nvim_lsp_signature_help" },
                 { name = "luasnip" },
             }, {
                 { name = "buffer" },
