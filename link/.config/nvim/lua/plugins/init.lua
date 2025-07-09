@@ -1,6 +1,6 @@
 -- plugins setup
 require("lazy").setup({
-    require("plugins.lsp"),
+    require("lsp.init"),
     -- Appearance
     {
         "sainnhe/everforest",

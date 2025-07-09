@@ -60,12 +60,11 @@ return {
         vim.lsp.config('*', {
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
-        -- LSPs that uses default nvim-lspconfig
-        default_lsps = {"fortls", "ruff"}
-        vim.lsp.enable(default_lsps)
+        local lsps = {"fortls", "ruff"} -- LSPs that uses default nvim-lspconfig
 
         -- Bash
-        lspconfig.bashls.setup({
+        local server = 'bashls'
+        vim.lsp.config(server, {
             settings = {
                 bashls = {
                     shellFormatter = "shfmt",
@@ -74,13 +73,17 @@ return {
                 },
             },
         })
+        table.insert(lsps, server)
         -- C/C++
-        lspconfig.clangd.setup({
+        local server = 'clangd'
+        vim.lsp.config(server, {
             cmd = { "clangd", "--enable-config" },
-            filetypes = { "c", "cpp", "objc", "objcpp" },
         })
+        table.insert(lsps, server)
+
         -- Python
-        lspconfig.pyright.setup({
+        local server = 'pyright'
+        vim.lsp.config(server, {
             settings = {
                 python = {
                     disableOrganizeImports = true,
@@ -88,5 +91,8 @@ return {
                 },
             },
         })
+        table.insert(lsps, server)
+
+        vim.lsp.enable(lsps)
     end
 }
