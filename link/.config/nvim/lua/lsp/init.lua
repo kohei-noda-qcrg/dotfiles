@@ -1,7 +1,12 @@
 -- LSP
 return {
-    "neovim/nvim-lspconfig",
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+        ensure_installed = { "bashls", "clangd", "fortls", "mesonlsp", "pyright", "ruff" }
+    },
     dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -11,7 +16,7 @@ return {
         "saadparwaiz1/cmp_luasnip",
     },
     config = function()
-        local lspconfig = require("lspconfig")
+        require("mason-lspconfig").setup()
         local cmp = require("cmp")
         local luasnip = require("luasnip")
 
@@ -60,11 +65,8 @@ return {
         vim.lsp.config('*', {
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
         })
-        local lsps = {"fortls", "ruff"} -- LSPs that uses default nvim-lspconfig
-
         -- Bash
-        local server = 'bashls'
-        vim.lsp.config(server, {
+        vim.lsp.config('bashls', {
             settings = {
                 bashls = {
                     shellFormatter = "shfmt",
@@ -73,17 +75,12 @@ return {
                 },
             },
         })
-        table.insert(lsps, server)
         -- C/C++
-        local server = 'clangd'
-        vim.lsp.config(server, {
+        vim.lsp.config('clangd', {
             cmd = { "clangd", "--enable-config" },
         })
-        table.insert(lsps, server)
-
         -- Python
-        local server = 'pyright'
-        vim.lsp.config(server, {
+        vim.lsp.config('pyright', {
             settings = {
                 python = {
                     disableOrganizeImports = true,
@@ -91,8 +88,5 @@ return {
                 },
             },
         })
-        table.insert(lsps, server)
-
-        vim.lsp.enable(lsps)
     end
 }
