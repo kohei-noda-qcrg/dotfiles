@@ -2,7 +2,7 @@
 return {
     "mason-org/mason-lspconfig.nvim",
     opts = {
-        ensure_installed = { "bashls", "clangd", "fortls", "mesonlsp", "pyright", "ruff" }
+        ensure_installed = { "bashls", "clangd", "fortls", "mesonlsp", "pyright", "ruff", "yamlls" }
     },
     dependencies = {
         { "mason-org/mason.nvim", opts = {} },
@@ -85,6 +85,16 @@ return {
                 python = {
                     disableOrganizeImports = true,
                     analysis = { autoSearchPaths = true },
+                },
+            },
+        })
+        -- Yaml
+        vim.lsp.config('yamlls', {
+            settings = {
+                yaml = {
+                    format = {
+                        enable = true,
+                    },
                 },
             },
         })
