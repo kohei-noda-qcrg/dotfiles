@@ -2,7 +2,6 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        "williamboman/mason.nvim",
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -12,7 +11,6 @@ return {
         "saadparwaiz1/cmp_luasnip",
     },
     config = function()
-        require("mason").setup()
         local lspconfig = require("lspconfig")
         local cmp = require("cmp")
         local luasnip = require("luasnip")
@@ -59,11 +57,15 @@ return {
             }),
         })
 
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        vim.lsp.config('*', {
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        })
+        -- LSPs that uses default nvim-lspconfig
+        default_lsps = {"fortls", "ruff"}
+        vim.lsp.enable(default_lsps)
 
         -- Bash
         lspconfig.bashls.setup({
-            capabilities = capabilities,
             settings = {
                 bashls = {
                     shellFormatter = "shfmt",
@@ -74,13 +76,11 @@ return {
         })
         -- C/C++
         lspconfig.clangd.setup({
-            capabilities = capabilities,
             cmd = { "clangd", "--enable-config" },
             filetypes = { "c", "cpp", "objc", "objcpp" },
         })
         -- Python
         lspconfig.pyright.setup({
-            capabilities = capabilities,
             settings = {
                 python = {
                     disableOrganizeImports = true,
@@ -88,6 +88,5 @@ return {
                 },
             },
         })
-        lspconfig.ruff.setup({ capabilities = capabilities })
     end
 }
