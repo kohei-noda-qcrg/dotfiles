@@ -1,4 +1,4 @@
 CompileFlags:
-    Add:
-        - -Wall
-        - -std=c++23
+  Add:
+    - -Wall
+    - -std=c++23
