@@ -10,3 +10,4 @@ vim.opt.showcmd = true
 vim.opt.wildmode = 'longest,list'
 vim.opt.cursorline = true
 vim.opt.foldenable = false
+vim.opt.updatetime = 500
