@@ -6,4 +6,4 @@ vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, { silent = t
 vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { silent = true })
 vim.keymap.set("n", "<C-s>", function() vim.lsp.buf.signature_help() end, { silent = true })
 vim.keymap.set("i", "<C-s>", function() vim.lsp.buf.signature_help() end, { silent = true })
-vim.keymap.set("t", "<C-x>", "<C-\\><C-n>", { silent = true })
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
