@@ -3,10 +3,11 @@
 [core]
         editor = nvim
 [alias]
-        a = add
+        a  = add
         br = branch
         ch = checkout
         co = commit
+        p  = push
         st = status
         unstage = reset HEAD --
 [rebase]
