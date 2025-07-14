@@ -1,6 +1,6 @@
 -- plugins setup
 require("lazy").setup({
-    require("lsp.init"),
+    require("plugins.lsp"),
     require("plugins.formatter"),
     -- Appearance
     {
