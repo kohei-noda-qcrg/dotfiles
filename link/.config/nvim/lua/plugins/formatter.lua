@@ -19,15 +19,9 @@ return {
             sources = {
                 -- Fortran formatter
                 null_ls.builtins.formatting.fprettify.with({
-                    command = "sh",
-                    args = {
-                        "-c",
-                        [[cd "$(dirname $1)" && fprettify --silent --stdout "$(basename $1)"]],
-                        "--",
-                        "$FILENAME",
-                    },
+                    command = "fprettify",
+                    args = {"--silent", "-"},
                     filetypes = { "fortran" },
-                    to_stdin = false,
                 }),
             },
         })
