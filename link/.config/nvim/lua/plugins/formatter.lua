@@ -10,6 +10,7 @@ return {
         require('mason-null-ls').setup({
             ensure_installed = {
                 "fprettify",
+                "shfmt",
             },
         })
         local null_ls = require("null-ls")
