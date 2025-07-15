@@ -19,6 +19,16 @@ require("lazy").setup({
             })
         end
     },
+    {
+        "dinhhuy258/git.nvim",
+        event = "BufReadPre",
+        opts = {
+            keymaps = {
+                blame = "<Leader>gb",
+                browse = "<Leader>go"
+            },
+        },
+    },
     "lewis6991/gitsigns.nvim",
     "vim-airline/vim-airline",
     "ntpeters/vim-better-whitespace",
