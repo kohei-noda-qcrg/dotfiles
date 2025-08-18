@@ -10,9 +10,12 @@ export EDITOR=nvim
 export COLORTERM=truecolor
 
 # source
-[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" # rust
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"         # rust
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env" # uv
+if type zoxide &>/dev/null; then
+    eval "$(zoxide init bash)"
+fi
 
 if [ -n "$BASH_VERSION" ]; then
-	if [ -f "$HOME/.bashrc" ]; then . "$HOME/.bashrc"; fi
+    if [ -f "$HOME/.bashrc" ]; then . "$HOME/.bashrc"; fi
 fi
