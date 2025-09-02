@@ -1,15 +1,13 @@
 -- format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
+    group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
     callback = function(args)
-        local clients = vim.lsp.get_clients({ bufnr = args.buf })
-        for _, client in ipairs(clients) do
-            if client.supports_method("textDocument/formatting") then
-                vim.lsp.buf.format({ async = false })
-                return
-            end
-        end
+        require("conform").format({
+            bufnr = args.buf,
+            async = false,
+            lsp_fallback = true,
+        })
     end,
-    group = vim.api.nvim_create_augroup("LspFormatting", { clear = true }),
 })
 
 -- Diagnostic auto display

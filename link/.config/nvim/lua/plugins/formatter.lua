@@ -1,28 +1,31 @@
 return {
-    "jay-babu/mason-null-ls.nvim",
+    "stevearc/conform.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvimtools/none-ls.nvim",
-        "williamboman/mason.nvim",
-    },
+    cmd = { "ConformInfo" },
     config = function()
-        require('mason-null-ls').setup({
-            ensure_installed = {
-                "fprettify",
-                "shellcheck",
-                "shfmt",
+        require("conform").setup({
+            formatters_by_ft = {
+                -- Fortran
+                fortran = { "fprettify" },
+
+                -- Shell
+                sh = { "shfmt" },
+                bash = { "shfmt" },
+
+                -- Meson
+                meson = { "meson_fmt" },
             },
-        })
-        local null_ls = require("null-ls")
-        null_ls.setup({
-            sources = {
-                -- Fortran formatter
-                null_ls.builtins.formatting.fprettify.with({
+            formatters = {
+                fprettify = {
                     command = "fprettify",
-                    args = {"--silent", "-"},
-                    filetypes = { "fortran" },
-                }),
+                    args = { "--silent", "-" },
+                    stdin = true,
+                },
+                meson_fmt = {
+                    command = "meson",
+                    args = { "fmt", "-" },
+                    stdin = true,
+                },
             },
         })
     end,
