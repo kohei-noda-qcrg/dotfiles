@@ -77,7 +77,7 @@ return {
         })
         -- C/C++
         vim.lsp.config('clangd', {
-            cmd = { "clangd", "--enable-config" },
+            cmd = { "clangd", "--enable-config", "--clang-tidy" }
         })
         -- Python
         vim.lsp.config('pyright', {
