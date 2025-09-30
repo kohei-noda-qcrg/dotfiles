@@ -5,8 +5,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_PICTURES_DIR="$HOME/.local/documents/pictures"
 # env variables
 export GIT_PS1_SHOWDIRTYSTATE=1
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border'
 export HISTSIZE=10000
 export HISTFILESIZE=$HISTSIZE
