@@ -33,15 +33,17 @@ $fetch "$FILE"
 sha512sum -c sha512-checksum.txt
 popd
 
+# setup git username and email
+if [[ -z ${GIT_USERNAME:-} ]]; then
+    read -rp "Enter your git user name: " GIT_USERNAME
+fi
+if [[ -z ${GIT_EMAIL:-} ]]; then
+    read -rp "Enter your git email: " GIT_EMAIL
+fi
+
 files=$(find "$SCRIPT_DIR/in" -type f)
 for file in $files; do
     if [[ "$file" =~ .gitconfig.in$ ]]; then
-        if [[ -z ${GIT_USERNAME:-} ]]; then
-            read -rp "Enter your git user name: " GIT_USERNAME
-        fi
-        if [[ -z ${GIT_EMAIL:-} ]]; then
-            read -rp "Enter your git email: " GIT_EMAIL
-        fi
         sed -e "s|@USERNAME@|$GIT_USERNAME|g" -e "s|@USEREMAIL@|$GIT_EMAIL|g" "$file" >"$SCRIPT_DIR/link/.gitconfig"
     elif [[ "$file" =~ .github-cli/aliases.yml$ ]]; then
         # if gh command is installed, set up alias
@@ -57,6 +59,8 @@ for file in $files; do
         mkdir -p "$dest"
         cp "$file" "$dest"
         echo "Copied $file to $dest"
+    elif [[ "$file" =~ .config/git/git_profile$ ]]; then
+        sed -e "s|@USERNAME@|$GIT_USERNAME|g" -e "s|@USEREMAIL@|$GIT_EMAIL|g" "$file" >"$SCRIPT_DIR/link/.config/git/git_profile"
     elif [[ "$file" =~ .config/zellij/plugins/zellij-autolock.wasm$ ]]; then
         dest="$SCRIPT_DIR/link/.config/zellij/plugins"
         mkdir -p "$dest"

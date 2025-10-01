@@ -15,6 +15,7 @@ export COLORTERM=truecolor
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"         # rust
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env" # uv
 [ -f "/usr/share/bash-completion/bash_completion" ] && . "/usr/share/bash-completion/bash_completion"
+[ -f "$HOME/.config/git/git_profile" ] && . "$HOME/.config/git/git_profile" # Git username and email
 if type zoxide &>/dev/null; then
     eval "$(zoxide init bash)"
 fi
