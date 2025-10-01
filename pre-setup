@@ -3,18 +3,18 @@
 set -eu
 
 SCRIPT_DIR=$(
-	cd "$(dirname "$0")"
-	pwd
+    cd "$(dirname "$0")"
+    pwd
 )
 
 # Download git completion and prompt scripts
 if type curl >/dev/null; then
-	fetch="curl -LO"
+    fetch="curl -LO"
 elif type wget >/dev/null; then
-	fetch="wget -nc"
+    fetch="wget -nc"
 else
-	echo "Please install wget or curl"
-	exit 1
+    echo "Please install wget or curl"
+    exit 1
 fi
 GITDIR="$SCRIPT_DIR/in/.config/git"
 pushd "$GITDIR"
@@ -35,37 +35,36 @@ popd
 
 files=$(find "$SCRIPT_DIR/in" -type f)
 for file in $files; do
-	if [[ "$file" =~ .gitconfig.in$ ]]; then
-		if [[ -z ${GIT_USERNAME:-} ]]; then
-			read -rp "Enter your git user name: " GIT_USERNAME
-		fi
-		if [[ -z ${GIT_EMAIL:-} ]]; then
-			read -rp "Enter your git email: " GIT_EMAIL
-		fi
-		sed -e "s|@USERNAME@|$GIT_USERNAME|g" -e "s|@USEREMAIL@|$GIT_EMAIL|g" "$file" >"$SCRIPT_DIR/link/.gitconfig"
-	elif [[ "$file" =~ .github-cli/aliases.yml$ ]]; then
-		# if gh command is installed, set up alias
-		if command -v gh >/dev/null; then
-			gh alias import "$file"
-		fi
-	elif [[ "$file" =~ .vscode/settings.json.in$ ]]; then
-		dest="$SCRIPT_DIR/link/.vscode-server/data/Machine/settings.json"
-		mkdir -p "$(dirname "$dest")"
-		sed -e "s|@HOME@|$HOME|g" "$file" >"$dest"
-	elif [[ "$file" =~ .config/git/git-.+$ ]]; then
-		dest="$SCRIPT_DIR/link/.config/git"
-		mkdir -p "$dest"
-		cp "$file" "$dest"
-		echo "Copied $file to $dest"
-	elif [[ "$file" =~ .config/zellij/plugins/zellij-autolock.wasm$ ]]; then
-		dest="$SCRIPT_DIR/link/.config/zellij/plugins"
-		mkdir -p "$dest"
-		cp "$file" "$dest"
-		echo "Copied $file to $dest"
-	elif [[ "$file" =~ sha512-checksum.txt$ ]]; then
-		echo "Skipping $file"
-	else
-		echo "Unknown file $file. skip it"
-	fi
+    if [[ "$file" =~ .gitconfig.in$ ]]; then
+        if [[ -z ${GIT_USERNAME:-} ]]; then
+            read -rp "Enter your git user name: " GIT_USERNAME
+        fi
+        if [[ -z ${GIT_EMAIL:-} ]]; then
+            read -rp "Enter your git email: " GIT_EMAIL
+        fi
+        sed -e "s|@USERNAME@|$GIT_USERNAME|g" -e "s|@USEREMAIL@|$GIT_EMAIL|g" "$file" >"$SCRIPT_DIR/link/.gitconfig"
+    elif [[ "$file" =~ .github-cli/aliases.yml$ ]]; then
+        # if gh command is installed, set up alias
+        if command -v gh >/dev/null; then
+            gh alias import "$file"
+        fi
+    elif [[ "$file" =~ .vscode/settings.json.in$ ]]; then
+        dest="$SCRIPT_DIR/link/.vscode-server/data/Machine/settings.json"
+        mkdir -p "$(dirname "$dest")"
+        sed -e "s|@HOME@|$HOME|g" "$file" >"$dest"
+    elif [[ "$file" =~ .config/git/git-.+$ ]]; then
+        dest="$SCRIPT_DIR/link/.config/git"
+        mkdir -p "$dest"
+        cp "$file" "$dest"
+        echo "Copied $file to $dest"
+    elif [[ "$file" =~ .config/zellij/plugins/zellij-autolock.wasm$ ]]; then
+        dest="$SCRIPT_DIR/link/.config/zellij/plugins"
+        mkdir -p "$dest"
+        cp "$file" "$dest"
+        echo "Copied $file to $dest"
+    elif [[ "$file" =~ sha512-checksum.txt$ ]]; then
+        echo "Skipping $file"
+    else
+        echo "Unknown file $file. skip it"
+    fi
 done
-
