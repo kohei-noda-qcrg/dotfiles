@@ -32,6 +32,7 @@ require("lazy").setup({
     "lewis6991/gitsigns.nvim",
     "vim-airline/vim-airline",
     "ntpeters/vim-better-whitespace",
+    "jannis-baum/vivify.vim",
 
     -- Utilities
     "junegunn/vim-easy-align",
