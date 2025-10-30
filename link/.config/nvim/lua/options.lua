@@ -1,5 +1,6 @@
 -- Basic vim.opt settings
 vim.g.mapleader = " "
+vim.g.copilot_enabled = false
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
