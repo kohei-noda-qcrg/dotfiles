@@ -60,7 +60,9 @@ for file in $files; do
         cp "$file" "$dest"
         echo "Copied $file to $dest"
     elif [[ "$file" =~ .config/git/git_profile$ ]]; then
-        sed -e "s|@USERNAME@|$GIT_USERNAME|g" -e "s|@USEREMAIL@|$GIT_EMAIL|g" "$file" >"$SCRIPT_DIR/link/.config/git/git_profile"
+        dest="$SCRIPT_DIR/link/.config/git/git_profile"
+        mkdir -p "$(dirname "$dest")"
+        sed -e "s|@USERNAME@|$GIT_USERNAME|g" -e "s|@USEREMAIL@|$GIT_EMAIL|g" "$file" >"$dest"
     elif [[ "$file" =~ .config/zellij/plugins/zellij-autolock.wasm$ ]]; then
         dest="$SCRIPT_DIR/link/.config/zellij/plugins"
         mkdir -p "$dest"
