@@ -10,6 +10,8 @@ export HISTSIZE=10000
 export HISTFILESIZE=$HISTSIZE
 export EDITOR=nvim
 export COLORTERM=truecolor
+# golang
+export GOBIN="$HOME/.local/bin"
 
 # source
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"         # rust
