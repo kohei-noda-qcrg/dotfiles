@@ -50,10 +50,6 @@ for file in $files; do
         if command -v gh >/dev/null; then
             gh alias import "$file"
         fi
-    elif [[ "$file" =~ .vscode/settings.json.in$ ]]; then
-        dest="$SCRIPT_DIR/link/.vscode-server/data/Machine/settings.json"
-        mkdir -p "$(dirname "$dest")"
-        sed -e "s|@HOME@|$HOME|g" "$file" >"$dest"
     elif [[ "$file" =~ .config/git/git-.+$ ]]; then
         dest="$SCRIPT_DIR/link/.config/git"
         mkdir -p "$dest"
