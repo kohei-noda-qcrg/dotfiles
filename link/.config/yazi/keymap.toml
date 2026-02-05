@@ -1,0 +1,5 @@
+[mgr]
+
+append_keymap = [
+    { on = "<C-n>", run = "shell -- bash -c 'shopt -s nullglob; ripdrag %s {.*,*} -x 2>/dev/null &'" },
+]
