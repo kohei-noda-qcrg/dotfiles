@@ -18,7 +18,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vi='nvim'
-alias vim='nvim'
 alias vimdiff='nvim -d'
 alias fm='yazi' # file manager
 alias ij='zellij'
