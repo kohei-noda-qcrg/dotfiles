@@ -31,13 +31,9 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\
 [ -f "/etc/modules/init/bash" ] && . "/etc/modules/init/bash"
 [ -f "/usr/share/modules/init/bash" ] && . "/usr/share/modules/init/bash"
 
-if type fzf &>/dev/null; then
-    eval "$(fzf --bash)"
-fi
-
-if type module &>/dev/null; then
-    module use --append "$HOME/modulefiles"
-fi
+type zoxide &>/dev/null && eval "$(zoxide init bash)"
+type fzf &>/dev/null && eval "$(fzf --bash)"
+type module &>/dev/null && module use --append "$HOME/modulefiles"
 
 # functions
 docker() {
