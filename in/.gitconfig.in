@@ -9,7 +9,7 @@
         co = commit
         p  = push
         st = status
-        unstage = reset HEAD --
+        unstage = restore --staged --
 [rebase]
         autostash = true
 [user]
