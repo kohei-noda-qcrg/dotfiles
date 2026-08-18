@@ -7,15 +7,16 @@ SCRIPT_DIR=$(
     pwd
 )
 
-# Download git completion and prompt scripts
 if type curl >/dev/null; then
-    fetch="curl -LO"
+    fetch="curl -fLO"
 elif type wget >/dev/null; then
     fetch="wget -nc"
 else
     echo "Please install wget or curl"
     exit 1
 fi
+
+# Download git completion and prompt scripts
 GITDIR="$SCRIPT_DIR/in/.config/git"
 pushd "$GITDIR"
 HASH=c032b1d8bc29de4fb1322d841d8216ca961dcb53
