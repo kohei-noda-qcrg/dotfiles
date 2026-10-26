@@ -30,7 +30,7 @@ ZELLIJDIR="$SCRIPT_DIR/in/.config/zellij/plugins"
 pushd "$ZELLIJDIR"
 FILE="https://github.com/fresh2dev/zellij-autolock/releases/latest/download/zellij-autolock.wasm"
 $fetch "$FILE"
-# sha512-checksum.txt release version is 0.2.2, https://github.com/fresh2dev/zellij-autolock/releases/tag/0.2.2
+# sha512-checksum.txt release version is 0.3.0, https://github.com/fresh2dev/zellij-autolock/releases/tag/0.3.0
 sha512sum -c sha512-checksum.txt
 popd
 
