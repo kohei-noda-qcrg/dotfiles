@@ -10,6 +10,7 @@
         p  = push
         st = status
         unstage = restore --staged --
+        w = worktree
 [rebase]
         autostash = true
 [user]
